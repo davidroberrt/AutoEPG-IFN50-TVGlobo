@@ -22,8 +22,6 @@ from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
 def main():
 	try:
-		# Restante do código aparecendo a 
-
 		# Obtendo data e hora atual
 		date_and_time_today = datetime.now()
 		date_and_time_today_TEXT = date_and_time_today.strftime('%d%m%Y%H%M%S')
@@ -172,7 +170,7 @@ def main():
 					f.close()
 
 
-				# Configuração de execução do driver Firefox
+				# Configuração de execução do webdriver 
 				flag = 0x08000000  # Sinalizador sem janela
 				webdriver.common.service.subprocess.Popen = functools.partial(
 				webdriver.common.service.subprocess.Popen, creationflags=flag)
@@ -184,7 +182,7 @@ def main():
 				#driver.set_window_position(-3000, 0) & driver.set_window_position(0, 0) para trazê-lo de volta
 				
 				# Abrindo o IFN 50
-				driver.get("http://IP-da-maquina") #Exclui o IP por segurança, aqui é o link das configurações do encoder.
+				driver.get("http://IP-da-maquina") #IP da máquina oculto por segurança, aqui é o link do dashboard do encoder IFN-50.
 				assert "IFN" in driver.title
 
 				# Preenchendo informações de login
@@ -200,7 +198,7 @@ def main():
 				button_submit = driver.find_element(By.XPATH, '//*[@id="login_form"]/div/div[4]/input').click()
 				time.sleep(0.5)
 
-				# Iniciando a importação manual do EPG
+				# Iniciando a importação do EPG
 				button_import = driver.find_element(By.ID, 'bt_import').click()
 				time.sleep(0.5)
 				button_manual = driver.find_element(By.XPATH,'/html/body/div[45]/div[2]/div/table/tbody/tr[1]/td/div/label[2]').click()
